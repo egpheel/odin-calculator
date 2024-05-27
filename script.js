@@ -2,7 +2,7 @@ const clearButton = document.querySelector(".calc-clear-button");
 const calcButtons = document.querySelectorAll(".calc-button");
 const display = document.querySelector(".display");
 
-let operator = "";
+let readyForOperator = true;
 let displayValue = "";
 let resolved = false;
 
@@ -19,40 +19,49 @@ clearButton.addEventListener("click", () => {
 const handleButtons = (buttonText) => {
   switch (buttonText) {
     case "+":
-      if (!operator) {
+      if (readyForOperator) {
         displayValue += " + ";
-        operator = "+";
         resolved = false;
+        readyForOperator = false;
       }
       break;
     case "-":
-      if (!operator) {
+      if (readyForOperator) {
         displayValue += " - ";
-        operator = "-";
         resolved = false;
+        readyForOperator = false;
       }
       break;
     case "*":
-      if (!operator) {
+      if (readyForOperator) {
         displayValue += " * ";
-        operator = "*";
         resolved = false;
+        readyForOperator = false;
       }
       break;
     case "/":
-      if (!operator) {
+      if (readyForOperator) {
         displayValue += " / ";
-        operator = "/";
         resolved = false;
+        readyForOperator = false;
       }
       break;
     case "=":
       if (!resolved && displayValue.split(" ").length === 3) {
         resolveOperation(displayValue);
+        resolved = true;
+      }
+
+      if (displayValue === "") {
+        displayValue = "0";
       }
       break;
     default:
       if (!resolved) {
+        if (displayValue === "0") {
+          displayValue = "";
+        }
+
         displayValue += buttonText;
       }
       break;
@@ -63,8 +72,7 @@ const handleButtons = (buttonText) => {
 const resolveOperation = (op) => {
   op = displayValue.split(" ");
   displayValue = operate(op) + "";
-  resolved = true;
-  operator = "";
+  readyForOperator = true;
   updateDisplay();
 };
 
