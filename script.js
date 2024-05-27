@@ -108,17 +108,17 @@ const operate = ([a, op, b]) => {
 };
 
 const add = (a, b) => {
-  return parseFloat(a) + parseFloat(b);
+  return (parseFloat(a) + parseFloat(b)).toFixed(6);
 };
 
 const subtract = (a, b) => {
-  return parseFloat(a) - parseFloat(b);
+  return (parseFloat(a) - parseFloat(b)).toFixed(6);
 };
 
 const multiply = (a, b) => {
-  return parseFloat(a) * parseFloat(b);
+  return (parseFloat(a) * parseFloat(b)).toFixed(6);
 };
 
 const divide = (a, b) => {
-  return parseFloat(a) / parseFloat(b);
+  return (parseFloat(a) / parseFloat(b)).toFixed(6);
 };
