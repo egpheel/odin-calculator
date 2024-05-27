@@ -20,44 +20,28 @@ const handleButtons = (buttonText) => {
   switch (buttonText) {
     case "+":
       if (!operator) {
-        if (displayValue === "") {
-          displayValue = 0 + " + ";
-        } else {
-          displayValue += " + ";
-        }
+        displayValue += " + ";
         operator = "+";
         resolved = false;
       }
       break;
     case "-":
       if (!operator) {
-        if (displayValue === "") {
-          displayValue = 0 + " - ";
-        } else {
-          displayValue += " - ";
-        }
+        displayValue += " - ";
         operator = "-";
         resolved = false;
       }
       break;
     case "*":
       if (!operator) {
-        if (displayValue === "") {
-          displayValue = 0 + " * ";
-        } else {
-          displayValue += " * ";
-        }
+        displayValue += " * ";
         operator = "*";
         resolved = false;
       }
       break;
     case "/":
       if (!operator) {
-        if (displayValue === "") {
-          displayValue = 0 + " / ";
-        } else {
-          displayValue += " / ";
-        }
+        displayValue += " / ";
         operator = "/";
         resolved = false;
       }
