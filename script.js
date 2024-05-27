@@ -5,6 +5,7 @@ const display = document.querySelector(".display");
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = "";
+let operation = [];
 let displayValue = "";
 
 calcButtons.forEach((btn) => {
@@ -59,10 +60,19 @@ const handleButtons = (buttonText) => {
         operator = "/";
       }
       break;
+    case "=":
+      resolveOperation(displayValue);
+      break;
     default:
       displayValue += buttonText;
       break;
   }
+  updateDisplay();
+};
+
+const resolveOperation = (op) => {
+  op = displayValue.split(" ");
+  displayValue = operate(op);
   updateDisplay();
 };
 
@@ -79,7 +89,7 @@ const updateDisplay = () => {
   display.textContent = displayValue;
 };
 
-const operate = (a, b, op) => {
+const operate = ([a, op, b]) => {
   switch (op) {
     case "+":
       return add(a, b);
@@ -93,17 +103,17 @@ const operate = (a, b, op) => {
 };
 
 const add = (a, b) => {
-  return a + b;
+  return parseFloat(a) + parseFloat(b);
 };
 
 const subtract = (a, b) => {
-  return a - b;
+  return parseFloat(a) - parseFloat(b);
 };
 
 const multiply = (a, b) => {
-  return a * b;
+  return parseFloat(a) * parseFloat(b);
 };
 
 const divide = (a, b) => {
-  return a / b;
+  return parseFloat(a) / parseFloat(b);
 };
