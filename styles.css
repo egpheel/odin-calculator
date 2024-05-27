@@ -1,0 +1,32 @@
+.calculator,
+.display,
+.row {
+  display: flex;
+}
+
+.calculator {
+  flex-direction: column;
+}
+
+.display {
+  width: 100%;
+  height: 50px;
+  justify-content: end;
+  align-items: end;
+  border: 1px solid gray;
+  font-size: 44px;
+  overflow: hidden;
+}
+.row {
+  flex-direction: row;
+  width: 200px;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+}
+
+.calc-clear-button {
+  width: 100%;
+}

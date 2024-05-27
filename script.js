@@ -106,20 +106,20 @@ const operate = ([a, op, b]) => {
 };
 
 const add = (a, b) => {
-  return (parseFloat(a) + parseFloat(b)).toFixed(6);
+  return Math.round((parseFloat(a) + parseFloat(b)) * 10000) / 10000;
 };
 
 const subtract = (a, b) => {
-  return (parseFloat(a) - parseFloat(b)).toFixed(6);
+  return Math.round((parseFloat(a) - parseFloat(b)) * 10000) / 10000;
 };
 
 const multiply = (a, b) => {
-  return (parseFloat(a) * parseFloat(b)).toFixed(6);
+  return Math.round(parseFloat(a) * parseFloat(b) * 10000) / 10000;
 };
 
 const divide = (a, b) => {
   if (b === "0") {
     return "CAN'T DIVIDE BY ZERO!";
   }
-  return (parseFloat(a) / parseFloat(b)).toFixed(6);
+  return Math.round((parseFloat(a) / parseFloat(b)) * 10000) / 10000;
 };
