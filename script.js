@@ -3,7 +3,7 @@ const calcButtons = document.querySelectorAll(".calc-button");
 const display = document.querySelector(".display");
 
 let readyForOperator = true;
-let displayValue = "";
+let displayValue = "0";
 let resolved = false;
 
 calcButtons.forEach((btn) => {
@@ -19,32 +19,16 @@ clearButton.addEventListener("click", () => {
 const handleButtons = (buttonText) => {
   switch (buttonText) {
     case "+":
-      if (readyForOperator) {
-        displayValue += " + ";
-        resolved = false;
-        readyForOperator = false;
-      }
+      operatorButtonPressed("+");
       break;
     case "-":
-      if (readyForOperator) {
-        displayValue += " - ";
-        resolved = false;
-        readyForOperator = false;
-      }
+      operatorButtonPressed("-");
       break;
     case "*":
-      if (readyForOperator) {
-        displayValue += " * ";
-        resolved = false;
-        readyForOperator = false;
-      }
+      operatorButtonPressed("*");
       break;
     case "/":
-      if (readyForOperator) {
-        displayValue += " / ";
-        resolved = false;
-        readyForOperator = false;
-      }
+      operatorButtonPressed("/");
       break;
     case "=":
       if (!resolved && displayValue.split(" ").length === 3) {
@@ -69,6 +53,27 @@ const handleButtons = (buttonText) => {
   updateDisplay();
 };
 
+const isThereASecondNumber = (op) => {
+  return op.split(" ")[2] ? true : false;
+};
+
+const operatorButtonPressed = (op) => {
+  if (isThereASecondNumber(displayValue)) {
+    resolveOperation(displayValue);
+  }
+
+  if (readyForOperator) {
+    if (displayValue === "0") {
+      displayValue = "0 " + op + " ";
+    } else {
+      displayValue += " " + op + " ";
+    }
+    resolved = false;
+    readyForOperator = false;
+  }
+  console.log(readyForOperator);
+};
+
 const resolveOperation = (op) => {
   op = displayValue.split(" ");
   displayValue = operate(op) + "";
@@ -79,6 +84,8 @@ const resolveOperation = (op) => {
 const clearDisplay = () => {
   displayValue = "0";
   operator = "";
+  resolved = false;
+  readyForOperator = true;
 
   updateDisplay();
 };
