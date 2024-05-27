@@ -71,7 +71,6 @@ const operatorButtonPressed = (op) => {
     resolved = false;
     readyForOperator = false;
   }
-  console.log(readyForOperator);
 };
 
 const resolveOperation = (op) => {
@@ -119,5 +118,8 @@ const multiply = (a, b) => {
 };
 
 const divide = (a, b) => {
+  if (b === "0") {
+    return "CAN'T DIVIDE BY ZERO!";
+  }
   return (parseFloat(a) / parseFloat(b)).toFixed(6);
 };
