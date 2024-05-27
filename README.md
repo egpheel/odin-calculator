@@ -1,2 +1,3 @@
-# odin-calculator
-Calculator - An assignment for The Odin Project
+# Calculator
+
+An assignment for The Odin Project.
