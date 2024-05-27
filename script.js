@@ -1,6 +1,7 @@
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = "";
+let displayValue = "";
 
 const operate = (a, b, op) => {
   switch (op) {
