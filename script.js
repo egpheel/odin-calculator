@@ -83,7 +83,6 @@ const resolveOperation = (op) => {
 
 const clearDisplay = () => {
   displayValue = "0";
-  operator = "";
   resolved = false;
   readyForOperator = true;
 
