@@ -18,12 +18,60 @@ clearButton.addEventListener("click", () => {
 });
 
 const handleButtons = (buttonText) => {
-  displayValue += buttonText;
+  switch (buttonText) {
+    case "+":
+      if (!operator) {
+        if (displayValue === "") {
+          displayValue = 0 + " + ";
+        } else {
+          displayValue += " + ";
+        }
+        operator = "+";
+      }
+      break;
+    case "-":
+      if (!operator) {
+        if (displayValue === "") {
+          displayValue = 0 + " - ";
+        } else {
+          displayValue += " - ";
+        }
+        operator = "-";
+      }
+      break;
+    case "*":
+      if (!operator) {
+        if (displayValue === "") {
+          displayValue = 0 + " * ";
+        } else {
+          displayValue += " * ";
+        }
+        operator = "*";
+      }
+      break;
+    case "/":
+      if (!operator) {
+        if (displayValue === "") {
+          displayValue = 0 + " / ";
+        } else {
+          displayValue += " / ";
+        }
+        operator = "/";
+      }
+      break;
+    default:
+      displayValue += buttonText;
+      break;
+  }
   updateDisplay();
 };
 
 const clearDisplay = () => {
   displayValue = "";
+  firstNumber = 0;
+  secondNumber = 0;
+  operator = "";
+
   updateDisplay();
 };
 
