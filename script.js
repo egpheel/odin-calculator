@@ -2,11 +2,9 @@ const clearButton = document.querySelector(".calc-clear-button");
 const calcButtons = document.querySelectorAll(".calc-button");
 const display = document.querySelector(".display");
 
-let firstNumber = 0;
-let secondNumber = 0;
 let operator = "";
-let operation = [];
 let displayValue = "";
+let resolved = false;
 
 calcButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -28,6 +26,7 @@ const handleButtons = (buttonText) => {
           displayValue += " + ";
         }
         operator = "+";
+        resolved = false;
       }
       break;
     case "-":
@@ -38,6 +37,7 @@ const handleButtons = (buttonText) => {
           displayValue += " - ";
         }
         operator = "-";
+        resolved = false;
       }
       break;
     case "*":
@@ -48,6 +48,7 @@ const handleButtons = (buttonText) => {
           displayValue += " * ";
         }
         operator = "*";
+        resolved = false;
       }
       break;
     case "/":
@@ -58,13 +59,18 @@ const handleButtons = (buttonText) => {
           displayValue += " / ";
         }
         operator = "/";
+        resolved = false;
       }
       break;
     case "=":
-      resolveOperation(displayValue);
+      if (!resolved && displayValue.split(" ").length === 3) {
+        resolveOperation(displayValue);
+      }
       break;
     default:
-      displayValue += buttonText;
+      if (!resolved) {
+        displayValue += buttonText;
+      }
       break;
   }
   updateDisplay();
@@ -72,14 +78,14 @@ const handleButtons = (buttonText) => {
 
 const resolveOperation = (op) => {
   op = displayValue.split(" ");
-  displayValue = operate(op);
+  displayValue = operate(op) + "";
+  resolved = true;
+  operator = "";
   updateDisplay();
 };
 
 const clearDisplay = () => {
-  displayValue = "";
-  firstNumber = 0;
-  secondNumber = 0;
+  displayValue = "0";
   operator = "";
 
   updateDisplay();
